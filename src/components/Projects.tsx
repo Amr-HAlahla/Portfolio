@@ -4,6 +4,13 @@ import { Project } from '../types';
 
 const projects: Project[] = [
   {
+    title: 'SpringMicroHub',
+    description: 'Built a scalable microservices ecosystem for user management, file storage, and notifications using Spring Boot, Kafka, and Docker, with Eureka for service discovery and Spring Cloud Gateway for routing.',
+    tags: ['Spring Boot', 'Kafka', 'Docker', 'PostgreSQL', 'Eureka', 'Spring Cloud Gateway'],
+    githubUrl: 'https://github.com/Amr-HAlahla/SpringMicroHub',
+    category: 'Backend'
+  },
+  {
     title: 'Microservices Architecture',
     description: 'Built a scalable microservices system using Spring Boot, Kafka, and Docker with service discovery and load balancing.',
     tags: ['Spring Boot', 'Kafka', 'Docker', 'MongoDB'],
@@ -58,8 +65,8 @@ export default function Projects() {
               key={category}
               onClick={() => setFilter(category)}
               className={`px-6 py-3 rounded-full transition-all duration-300 transform hover:-translate-y-1 ${filter === category
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-md'
+                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
+                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-md'
                 }`}
             >
               {category}
