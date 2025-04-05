@@ -6,14 +6,14 @@ const projects: Project[] = [
   {
     title: 'SpringMicroHub',
     description: 'Built a scalable microservices ecosystem for user management, file storage, and notifications using Spring Boot, Kafka, and Docker, with Eureka for service discovery and Spring Cloud Gateway for routing.',
-    tags: ['Spring Boot', 'Kafka', 'Docker', 'PostgreSQL', 'Eureka', 'Spring Cloud Gateway'],
+    tags: ['Spring Boot', 'Kafka', 'Docker', 'PostgreSQL', 'Eureka', 'Spring Cloud Gateway', 'JWT', 'Swagger'],
     githubUrl: 'https://github.com/Amr-HAlahla/SpringMicroHub',
     category: 'Backend'
   },
   {
     title: 'Microservices Architecture',
     description: 'Built a scalable microservices system using Spring Boot, Kafka, and Docker with service discovery and load balancing.',
-    tags: ['Spring Boot', 'Kafka', 'Docker', 'MongoDB'],
+    tags: ['Spring Boot', 'Kafka', 'Docker', 'MongoDB', 'MySQL ', 'Eureka', 'Spring Cloud Gateway'],
     githubUrl: 'https://github.com/Amr-HAlahla/Backend-SpringBoot-Project',
     category: 'Backend'
   },
@@ -84,8 +84,8 @@ export default function Projects() {
                 setCurrentPage(0);
               }}
               className={`px-6 py-3 rounded-full transition-all duration-300 transform hover:-translate-y-1 ${filter === category
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-md'
+                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
+                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-md'
                 }`}
             >
               {category}
@@ -144,8 +144,8 @@ export default function Projects() {
                     key={index}
                     onClick={() => setCurrentPage(index)}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${currentPage === index
-                        ? 'bg-blue-600 dark:bg-blue-400 scale-125'
-                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                      ? 'bg-blue-600 dark:bg-blue-400 scale-125'
+                      : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
                       }`}
                     aria-label={`Go to page ${index + 1}`}
                   />
