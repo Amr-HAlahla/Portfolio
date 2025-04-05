@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Github } from 'lucide-react';
+import { Github, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '../types';
 
 const projects: Project[] = [
@@ -42,12 +42,28 @@ const projects: Project[] = [
 
 export default function Projects() {
   const [filter, setFilter] = useState<Project['category'] | 'All'>('All');
+  const [currentPage, setCurrentPage] = useState(0);
+  const projectsPerPage = 2;
 
   const categories: (Project['category'] | 'All')[] = ['All', 'Backend', 'AI', 'Real-time Systems', 'Embedded Systems'];
 
   const filteredProjects = filter === 'All'
     ? projects
     : projects.filter(project => project.category === filter);
+
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  const currentProjects = filteredProjects.slice(
+    currentPage * projectsPerPage,
+    (currentPage + 1) * projectsPerPage
+  );
+
+  const nextPage = () => {
+    setCurrentPage((prev) => (prev + 1) % totalPages);
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+  };
 
   return (
     <section id="projects" className="py-20 bg-gradient-to-br from-white via-gray-50 to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
@@ -63,10 +79,13 @@ export default function Projects() {
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setFilter(category)}
+              onClick={() => {
+                setFilter(category);
+                setCurrentPage(0);
+              }}
               className={`px-6 py-3 rounded-full transition-all duration-300 transform hover:-translate-y-1 ${filter === category
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
-                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-md'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30'
+                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-md'
                 }`}
             >
               {category}
@@ -74,39 +93,73 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.title}
-              className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-            >
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {project.title}
-              </h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-4">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
-                  >
-                    {tag}
-                  </span>
+        <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {currentProjects.map((project) => (
+              <div
+                key={project.title}
+                className="group bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300"
+                >
+                  <Github className="w-4 h-4" />
+                  View on GitHub
+                </a>
+              </div>
+            ))}
+          </div>
+
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center mt-8 gap-4">
+              <button
+                onClick={prevPage}
+                className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110"
+                aria-label="Previous page"
+              >
+                <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+              </button>
+              <div className="flex gap-2">
+                {Array.from({ length: totalPages }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentPage(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${currentPage === index
+                        ? 'bg-blue-600 dark:bg-blue-400 scale-125'
+                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                      }`}
+                    aria-label={`Go to page ${index + 1}`}
+                  />
                 ))}
               </div>
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300"
+              <button
+                onClick={nextPage}
+                className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300 hover:scale-110"
+                aria-label="Next page"
               >
-                <Github className="w-4 h-4" />
-                View on GitHub
-              </a>
+                <ChevronRight className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+              </button>
             </div>
-          ))}
+          )}
         </div>
       </div>
     </section>
