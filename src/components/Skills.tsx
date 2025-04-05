@@ -13,6 +13,10 @@ const skills: Skill[] = [
   { name: 'Docker', category: 'Backend Technologies' },
   { name: 'Microservices', category: 'Backend Technologies' },
   { name: 'Kafka', category: 'Backend Technologies' },
+  { name: 'Eureka', category: 'Backend Technologies' },
+  { name: 'Spring Cloud Gateway', category: 'Backend Technologies' },
+  { name: 'Service Discovery', category: 'Backend Technologies' },
+  { name: 'API Gateway', category: 'Backend Technologies' },
 
   // Databases
   { name: 'MongoDB', category: 'Databases' },
