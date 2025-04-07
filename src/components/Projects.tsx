@@ -18,18 +18,25 @@ const projects: Project[] = [
     category: 'Backend'
   },
   {
+    "title": "Humanitarian Aid Distribution Simulation",
+    "description": "Developed a complex multi-process simulation of a humanitarian aid distribution operation in a hostile environment. The system models the entire aid delivery pipeline from cargo planes to families, incorporating inter-process communication using POSIX shared memory, semaphores, and signals. Features include dynamic resource management, hostile interference simulation, and configurable parameters for realistic scenario modeling.",
+    "tags": ["C", "Multi-processing", "POSIX", "Shared Memory", "Semaphores", "Signals", "Inter-process Communication"],
+    "githubUrl": "https://github.com/Amr-HAlahla/REALTIME-PROJECT2",
+    "category": "Real-time Systems"
+  },
+  {
+    title: 'Real-Time Ball Passing Game',
+    description: 'Developed a multi-process simulation of a team-based ball passing game with real-time visualization, implementing inter-process communication using Unix signals and FIFO pipes. Features include energy management, team coordination, and a graphical interface built with OpenGL/GLUT.',
+    tags: ['C', 'Multi-processing', 'Unix', 'Process Management', 'Inter-process Communication', 'Signals', 'FIFO Pipes'],
+    githubUrl: 'https://github.com/Amr-HAlahla/REALTIME-PROJECT1',
+    category: 'Real-time Systems'
+  },
+  {
     title: 'AI Magnetic Cave Game',
     description: 'Implemented an AI-powered game using the Minimax algorithm for optimal path finding in a magnetic cave environment.',
     tags: ['Python', 'AI', 'Minimax', 'Pygame'],
     githubUrl: 'https://github.com/Amr-HAlahla/AI-Magnetic-Cave-Game',
     category: 'AI'
-  },
-  {
-    title: 'Real-Time Wheat Distribution',
-    description: 'Developed a multi-process simulation system for wheat distribution using IPC mechanisms.',
-    tags: ['C', 'IPC', 'Multi-processing'],
-    githubUrl: 'https://github.com/Amr-HAlahla/REALTIME-PROJECT2',
-    category: 'Real-time Systems'
   },
   {
     title: 'RISC Processor',
