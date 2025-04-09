@@ -28,11 +28,12 @@ export default function Hero() {
               Hire Me
             </a>
             <a
-              href="https://drive.google.com/uc?export=download&id=1nUwfs6T4Bym1t9G1VOu6LWQR03sT8dXA"
+              href="https://amr-halahla.github.io/Portfolio/AmrHalahla-CV.pdf" // Update this link
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
-              download
             >
-              Download CV
+              View CV
             </a>
           </div>
 
